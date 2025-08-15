@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 
 void printArray(int A[], int n) {
     for(int i = 0; i < n; i++)
@@ -13,8 +12,8 @@ void findFactors(int n, int **factors, int *returnSize) {
     int idx = 0, last_idx = n - 1;
     *returnSize = 0;
 
-    int root = (int) sqrt((double) n);
-    for(int i = 1; i < root; i++) {
+    int i;
+    for(i = 1; i * i < n; i++) {
         if(n % i == 0) {
             temp[idx] = i;
             idx++;
@@ -23,18 +22,12 @@ void findFactors(int n, int **factors, int *returnSize) {
             *returnSize += 2;
         }
     }
-    if(n % root == 0) {
-        if(root == (n / root)) {
-            temp[idx] = root;
+
+    if(n % i == 0) {
+        if(i == (n / i)) {
+            temp[idx] = i;
             idx++;
             *returnSize += 1;
-        }
-        else {
-            temp[idx] = root;
-            idx++;
-            temp[last_idx] = n / root;
-            last_idx--;
-            *returnSize += 2;
         }
     }
 
