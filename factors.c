@@ -14,20 +14,27 @@ void findFactors(int n, int **factors, int *returnSize) {
     *returnSize = 0;
 
     int root = (int) sqrt((double) n);
-    for(int i = 1; i <= root; i++) {
+    for(int i = 1; i < root; i++) {
         if(n % i == 0) {
-            if(i == (n / i)) {
-                temp[idx] = i;
-                idx++;
-                *returnSize += 1;
-            }
-            else {
-                temp[idx] = i;
-                idx++;
-                temp[last_idx] = n / i;
-                last_idx--;
-                *returnSize += 2;
-            }
+            temp[idx] = i;
+            idx++;
+            temp[last_idx] = n / i;
+            last_idx--;
+            *returnSize += 2;
+        }
+    }
+    if(n % root == 0) {
+        if(root == (n / root)) {
+            temp[idx] = root;
+            idx++;
+            *returnSize += 1;
+        }
+        else {
+            temp[idx] = root;
+            idx++;
+            temp[last_idx] = n / root;
+            last_idx--;
+            *returnSize += 2;
         }
     }
 
