@@ -3,7 +3,7 @@
 This program finds the factors of a positive number.
 
 ## How It Works
-
+```
 It reads input from the user, let's call it N.
 Finds the square root of that number, let's call it SQRT.
 Then runs a loop COUNTER from 1 to SQRT:
@@ -11,7 +11,7 @@ Then runs a loop COUNTER from 1 to SQRT:
     Then COUNTER and N / COUNTER are added to the FACTORS array.
 
 This is a basic explaination of the logic.
-
+```
 ## How to Run
 
 1. Clone the repository:
