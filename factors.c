@@ -12,8 +12,14 @@ void findFactors(int n, int **factors, int *returnSize) {
     int idx = 0, last_idx = n - 1;
     *returnSize = 0;
 
+    int step;
+    if(n % 2 == 0)
+        step = 1;           // since factors of an even number can be either even or odd
+    else
+        step = 2;           // since all factors of an odd number are odd
+
     int i;
-    for(i = 1; i * i < n; i++) {
+    for(i = 1; i * i < n; i += step) {
         if(n % i == 0) {
             temp[idx] = i;
             idx++;
@@ -23,6 +29,7 @@ void findFactors(int n, int **factors, int *returnSize) {
         }
     }
 
+    // this inserts a single factor M into the array such that M * M = n
     if(n % i == 0) {
         if(i == (n / i)) {
             temp[idx] = i;
