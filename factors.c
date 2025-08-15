@@ -29,8 +29,8 @@ void findFactors(int n, int **factors, int *returnSize) {
         }
     }
 
-    // this inserts a single factor M into the array such that M * M = n
     if(n % i == 0) {
+        // this inserts a single factor M into the array such that M * M = n
         if(i == (n / i)) {
             temp[idx] = i;
             idx++;
