@@ -5,13 +5,17 @@ This program finds the factors of a positive number.
 ## How It Works
 ```
 It reads input from the user, let's call it N.
-Finds the square root of that number, let's call it SQRT.
-Then runs a loop COUNTER from 1 to SQRT:
+Then runs a loop COUNTER from 1 while COUNTER^2 is less than N:
   If N is divisible by COUNTER
     Then COUNTER and N / COUNTER are added to the FACTORS array.
+LOOP END
+If COUNTER^2 is equal to N:
+  Then only COUNTER is added to the FACTORS array.
 
-This is a basic explaination of the logic.
+This is just a basic explaination of the logic.
 ```
+### Note: There are a lot of optimizations done in the program which I have not explained here.
+
 ## How to Run
 
 1. Clone the repository:
