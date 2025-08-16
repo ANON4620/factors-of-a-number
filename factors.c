@@ -19,7 +19,7 @@ int findFactors(int n, int **factors, int *returnSize) {
         return 0;
     }
 
-    int sidx = 0, bidx = 0, slen = 1, blen = 1;
+    int idx = 0, len = 1;
 
     int step;
     if(n % 2 == 0) {
@@ -32,23 +32,21 @@ int findFactors(int n, int **factors, int *returnSize) {
     int i;
     for(i = 1; i * i < n; i += step) {
         if(n % i == 0) {
-            small[sidx] = i;
-            sidx++;
-            if(sidx == slen) {
-                slen *= 2;
-                int *newSmall = (int *) realloc(small, slen * sizeof(int));
+            small[idx] = i;
+            big[idx] = n / i;
+            idx++;
+            if(idx == len) {
+                len *= 2;
+
+                int *newSmall = (int *) realloc(small, len * sizeof(int));
                 if(newSmall == NULL) {
                     free(small);
                     free(big);
                     return 0;
                 }
                 small = newSmall;
-            }
-            big[bidx] = n / i;
-            bidx++;
-            if(bidx == blen) {
-                blen *= 2;
-                int *newBig = (int *) realloc(big, blen * sizeof(int));
+
+                int *newBig = (int *) realloc(big, len * sizeof(int));
                 if(newBig == NULL) {
                     free(small);
                     free(big);
@@ -59,13 +57,16 @@ int findFactors(int n, int **factors, int *returnSize) {
         }
     }
 
-    // this inserts a single factor M into the array such that M * M = n
-    if(i * i == n) {
-        small[sidx] = i;
-        sidx++;
-    }
+    *returnSize = idx * 2;
 
-    *returnSize = sidx + bidx;
+    // this inserts a single factor M into the array such that M * M = n
+    int perfectSquare = 0;
+    if(i * i == n) {
+        small[idx] = i;
+        idx++;
+        (*returnSize)++;
+        perfectSquare = 1;
+    }
 
     // Resize small to returnSize
     int *newSmall = (int *) realloc(small, *returnSize * sizeof(int));
@@ -76,9 +77,9 @@ int findFactors(int n, int **factors, int *returnSize) {
     }
     small = newSmall;
 
-    // Copy big numbers to remaining space in small
-    for(int i = bidx - 1; i >= 0; i--) {
-        small[sidx++] = big[i];
+    // Copy big array values to remaining space in small array
+    for(int i = idx - perfectSquare - 1; i >= 0; i--) {
+        small[idx++] = big[i];
     }
 
     *factors = small;
