@@ -14,7 +14,7 @@ If COUNTER^2 is equal to N:
 
 This is just a basic explaination of the logic.
 ```
-### Note: There are a lot of optimizations done in the program which I have not explained here.
+##### Note: There are a lot of optimizations done in the program which I have not explained here.
 
 ## How to Run
 
