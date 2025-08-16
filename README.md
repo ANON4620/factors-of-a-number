@@ -5,7 +5,7 @@ This program finds the factors of a positive number.
 ## How It Works
 ```
 It reads input from the user, let's call it N.
-Then runs a loop COUNTER from 1 while COUNTER^2 is less than N:
+Then runs a loop COUNTER from 1 while COUNTER*COUNTER is less than N:
   If N is divisible by COUNTER
     Then COUNTER and N / COUNTER are added to the FACTORS array.
 LOOP END
