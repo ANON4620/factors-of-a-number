@@ -59,12 +59,10 @@ int findFactors(int n, int **factors, int *returnSize) {
         }
     }
 
-    if(n % i == 0) {
-        // this inserts a single factor M into the array such that M * M = n
-        if(i == (n / i)) {
-            small[sidx] = i;
-            sidx++;
-        }
+    // this inserts a single factor M into the array such that M * M = n
+    if(i * i == n) {
+        small[sidx] = i;
+        sidx++;
     }
 
     *returnSize = sidx + bidx;
