@@ -1,10 +1,10 @@
-# Find Factors Of Any Positive Number
+# Find Factors Of Any Positive INT Number
 
 This program finds the factors of a positive number.
 
 ## How It Works
 ```
-It reads input from the user, let's call it N.
+It reads input from the user, let's call it N (unsigned int type).
 Creates a dynamically allocated array of some size K (this size is hardcoded into the code).
 Then runs a loop COUNTER from 1 while COUNTER*COUNTER is less than N:
   If N is divisible by COUNTER:
