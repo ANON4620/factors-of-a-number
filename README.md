@@ -9,7 +9,7 @@ Then runs a loop COUNTER from 1 while COUNTER^2 is less than N:
   If N is divisible by COUNTER
     Then COUNTER and N / COUNTER are added to the FACTORS array.
 LOOP END
-If COUNTER^2 is equal to N:
+If COUNTER*COUNTER is equal to N:
   Then only COUNTER is added to the FACTORS array.
 
 This is just a basic explaination of the logic.
