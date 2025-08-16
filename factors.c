@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void printArray(unsigned int A[], unsigned int n) {
+void printArray(int A[], int n) {
     for(int i = 0; i < n; i++)
         printf("%d ", A[i]);
     printf("\n");
 }
 
-int findFactors(unsigned int n, unsigned int **factors, unsigned int *returnSize) {
+int findFactors(unsigned int n, int **factors, int *returnSize) {
     if(n == 0)
         return 0;
 
@@ -92,10 +92,10 @@ int findFactors(unsigned int n, unsigned int **factors, unsigned int *returnSize
 
 int main() {
     unsigned int n;
-    unsigned int *factors;
-    unsigned int size;
+    int *factors;
+    int size;
     printf("Enter the number: ");
-    scanf("%d", &n);
+    scanf("%u", &n);
     int status = findFactors(n, &factors, &size);
     if(status == 1) {
         printArray(factors, size);
