@@ -5,9 +5,12 @@ This program finds the factors of a positive number.
 ## How It Works
 ```
 It reads input from the user, let's call it N.
+Creates a dynamically allocated array of some size K (this size is hardcoded into the code).
 Then runs a loop COUNTER from 1 while COUNTER*COUNTER is less than N:
-  If N is divisible by COUNTER
+  If N is divisible by COUNTER:
     Then COUNTER and N / COUNTER are added to the FACTORS array.
+    If array is full:
+        size of array is doubled K * 2 (i.e., array size grows exponentially)
 LOOP END
 If COUNTER*COUNTER is equal to N:
   Then only COUNTER is added to the FACTORS array.
