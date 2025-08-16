@@ -31,7 +31,7 @@ This is just a basic explaination of the logic.
    cd factors-of-a-number
    ```
 
-3. Compile and run (for C program example):
+3. Compile and run:
    ```
    gcc factors.c -lm -o factors
    ./factors
@@ -45,6 +45,6 @@ Enter the number: 100
 
 ## Notes
 ```
-- Written in C.
+- Written in C on Ubuntu.
 - Requires GCC or any C compiler.
 ```
