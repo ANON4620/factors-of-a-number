@@ -1,25 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void printArray(int A[], int n) {
+void printArray(unsigned int A[], unsigned int n) {
     for(int i = 0; i < n; i++)
         printf("%d ", A[i]);
     printf("\n");
 }
 
-int findFactors(int n, int **factors, int *returnSize) {
+int findFactors(unsigned int n, unsigned int **factors, unsigned int *returnSize) {
+    if(n == 0)
+        return 0;
+
+    int idx = 0, len = 64;      // Setting len to 64 so as to reduce the number of calls to realloc
+
     // Small numbers or multiplicand
-    int *small = (int *) malloc(sizeof(int));
+    int *small = (int *) malloc(len * sizeof(int));
     if(small == NULL) {
         return 0;
     }
     // Big numbers or multiplier
-    int *big = (int *) malloc(sizeof(int));
+    int *big = (int *) malloc(len * sizeof(int));
     if(big == NULL) {
         return 0;
     }
-
-    int idx = 0, len = 1;
 
     int step;
     if(n % 2 == 0) {
@@ -81,17 +84,16 @@ int findFactors(int n, int **factors, int *returnSize) {
     for(int i = idx - perfectSquare - 1; i >= 0; i--) {
         small[idx++] = big[i];
     }
+    free(big);
 
     *factors = small;
-
-    free(big);
     return 1;
 }
 
 int main() {
-    int n;
-    int *factors;
-    int size;
+    unsigned int n;
+    unsigned int *factors;
+    unsigned int size;
     printf("Enter the number: ");
     scanf("%d", &n);
     int status = findFactors(n, &factors, &size);
@@ -100,7 +102,7 @@ int main() {
         free(factors);
     }
     else {
-        printf("factors() function failed!");
+        printf("findFactors() function failed!\n");
     }
     return 0;
 }
