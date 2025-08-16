@@ -8,11 +8,12 @@ void printArray(int A[], int n) {
 }
 
 int findFactors(int n, int **factors, int *returnSize) {
-
+    // Small numbers or multiplicand
     int *small = (int *) malloc(sizeof(int));
     if(small == NULL) {
         return 0;
     }
+    // Big numbers or multiplier
     int *big = (int *) malloc(sizeof(int));
     if(big == NULL) {
         return 0;
@@ -28,7 +29,6 @@ int findFactors(int n, int **factors, int *returnSize) {
         step = 2;           // since all factors of an odd number are odd
     }
 
-    *returnSize = 0;
     int i;
     for(i = 1; i * i < n; i += step) {
         if(n % i == 0) {
@@ -39,6 +39,7 @@ int findFactors(int n, int **factors, int *returnSize) {
                 int *newSmall = (int *) realloc(small, slen * sizeof(int));
                 if(newSmall == NULL) {
                     free(small);
+                    free(big);
                     return 0;
                 }
                 small = newSmall;
@@ -49,12 +50,12 @@ int findFactors(int n, int **factors, int *returnSize) {
                 blen *= 2;
                 int *newBig = (int *) realloc(big, blen * sizeof(int));
                 if(newBig == NULL) {
+                    free(small);
                     free(big);
                     return 0;
                 }
                 big = newBig;
             }
-            *returnSize += 2;
         }
     }
 
@@ -63,21 +64,28 @@ int findFactors(int n, int **factors, int *returnSize) {
         if(i == (n / i)) {
             small[sidx] = i;
             sidx++;
-            *returnSize += 1;
         }
     }
 
-    *factors = (int *) malloc((*returnSize) * sizeof(int));
-    for(int i = 0; i < sidx; i++) {
-        (*factors)[i] = small[i];
+    *returnSize = sidx + bidx;
+
+    // Resize small to returnSize
+    int *newSmall = (int *) realloc(small, *returnSize * sizeof(int));
+    if(newSmall == NULL) {
+        free(small);
+        free(big);
+        return 0;
     }
-    for(int i = sidx; i < (*returnSize); i++) {
-        (*factors)[i] = big[--bidx];
+    small = newSmall;
+
+    // Copy big numbers to remaining space in small
+    for(int i = bidx - 1; i >= 0; i--) {
+        small[sidx++] = big[i];
     }
 
-    free(small);
+    *factors = small;
+
     free(big);
-
     return 1;
 }
 
